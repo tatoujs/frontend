@@ -1,0 +1,21 @@
+@import "var/colors";
+
+.nav {
+  color: white;
+  background-color: $primary;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin: 40px;
+  }
+
+  .menu {
+    margin: 20px 0;
+
+    li {
+      display: block;
+      padding: 20px;
+    }
+  }
+}

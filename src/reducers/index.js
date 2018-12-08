@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 
-import reducers from "./reducers";
+import herokuReducer from './heroku.reducer';
 
 const rootReducer = combineReducers({
-	reducers
+  heroku: herokuReducer
 });
 
-export default rootReducer
+export default rootReducer;
