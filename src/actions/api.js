@@ -6,5 +6,7 @@ export const fetchLoginHeroku = (username, password) => {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({username, password})
   };
-  return fetch(`${config.host.api}/heroku/login`, requestOptions);
+  return fetch(`${config.hostname}/heroku/login`, requestOptions);
 };
+
+export const fetchSelectAppHeroku = appId => fetch(`${config.hostname}/heroku/apps/${appId}/logs`);
