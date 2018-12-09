@@ -14,6 +14,8 @@ class Heroku extends Component {
   constructor (props) {
     super(props);
     this.logsRef = React.createRef();
+
+    console.log(props);
   }
 
   handleSubmit = event => {
@@ -26,22 +28,25 @@ class Heroku extends Component {
 
   handleChangeSelect = event => {
     if (event.target.value !== '') {
-      this.props.selectApp(event.target.value).then(() => {
-        if (this.socket === undefined) {
-          this.socket = openSocket(config.hostname);
-        }
-        this.joinRoom(event.target.value);
-        this.listenLog();
-      });
+      this.props.selectApp(event.target.value);
+
+      if (this.socket === undefined) {
+        this.socket = openSocket(config.hostname);
+      }
+
+      this.joinRoom(event.target.value);
+      this.listenLog();
     }
   };
 
   joinRoom = (roomName) => {
     this.socket.emit('join-room', roomName);
+    console.log(`room ${roomName} joined`);
   };
 
   listenLog = () => {
     this.socket.on('log', log => {
+      console.log(log);
       this.props.saveLog(log);
       this.scrollBottom(this.logsRef.current);
     });
@@ -74,7 +79,7 @@ class Heroku extends Component {
         <ul>
           {this.props.logs.map((log, i) =>
             <li key={i}>
-              <p>{moment(log.date).format('L')} - {log.type} > {log.text}</p>
+              <p>{log}</p>
             </li>
           )}
         </ul>

@@ -7,7 +7,6 @@ const herokuReducer = (state = {
 }, action) => {
 
   switch (action.type) {
-
     case ActionTypes.HEROKU_LOGIN_SUCCEDED:
       return {
         ...state,
@@ -16,10 +15,11 @@ const herokuReducer = (state = {
       };
 
     case ActionTypes.HEROKU_SELECT_APP_SUCCEDED:
-      return {
-        ...state,
-        logs: action.logs
-      };
+      // return {
+      //   ...state,
+      //   logs: action.logs
+      // };
+      return state;
 
     case ActionTypes.HEROKU_SAVE_LOG:
       return {

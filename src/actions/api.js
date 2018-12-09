@@ -9,4 +9,15 @@ export const fetchLoginHeroku = (username, password) => {
   return fetch(`${config.hostname}/heroku/login`, requestOptions);
 };
 
-export const fetchSelectAppHeroku = appId => fetch(`${config.hostname}/heroku/apps/${appId}/logs`);
+export const fetchSelectAppHeroku = (app_id) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic xxxxx', // TO PROVIDE
+    },
+    body: JSON.stringify({ app_id })
+  };
+
+  return fetch(`${config.hostname}/heroku/apps/drains`, requestOptions);
+}
